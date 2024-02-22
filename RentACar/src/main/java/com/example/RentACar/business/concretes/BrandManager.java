@@ -8,7 +8,6 @@ import com.example.RentACar.business.rules.BrandBusinessRules;
 import com.example.RentACar.core.utilities.mappers.ModelMapperService;
 import com.example.RentACar.dataAccess.abstracts.BrandRepository;
 import com.example.RentACar.entities.concretes.Brand;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -30,7 +29,7 @@ public class BrandManager implements BrandService {
         return brandsResponses;
     }
     @Override
-    public void add( CreateBrandRequest createBrandRequest){
+    public void add(CreateBrandRequest createBrandRequest){
         this.brandBusinessRules.checkIfBrandNameExists(createBrandRequest.getName());
         Brand brand = this.modelMapperService.forRequest().map(createBrandRequest,Brand.class);
         this.brandRepository.save(brand);
